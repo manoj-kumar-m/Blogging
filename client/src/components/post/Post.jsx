@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import "./Post.css";
 
 const Post = ({ post }) => {
-    const PF = "http://localhost:8000/images/";
+    const PF = "https://mkm-blogs.herokuapp.com/images/";
     return (
       <div className="post">
         {post.photo && <img className="postImg" src={PF + post.photo} alt="" />}

@@ -14,7 +14,7 @@ const Settings = () => {
     const [success, setSuccess] = useState(false);
   
     const { user, dispatch } = useContext(Context);
-    const PF = "http://localhost:8000/images/"
+    const PF = "https://mkm-blogs.herokuapp.com/images/"
   
     const handleSubmit = async (e) => {
       e.preventDefault();
@@ -32,7 +32,7 @@ const Settings = () => {
         data.append("file", file);
         updatedUser.profilePic = filename;
         try {
-          await axios.post("/upload", data);
+          await axios.post("https://mkm-blogs.herokuapp.com/upload", data);
         } catch (err) {}
       }
       try {

@@ -24,12 +24,12 @@ const Write = () => {
       data.append("file", file);
       newPost.photo = filename;
       try {
-        await axios.post("/upload", data);
+        await axios.post("https://mkm-blogs.herokuapp.com/upload", data);
       } catch (err) {}
     }
     try {
-      const res = await axios.post("/posts", newPost);
-      window.location.replace("/post/" + res.data._id);
+      const res = await axios.post("https://mkm-blogs.herokuapp.com/posts", newPost);
+      window.location.replace("https://mkm-blogs.herokuapp.com/post/" + res.data._id);
     } catch (err) {}
   };
   return (

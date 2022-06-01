@@ -8,7 +8,7 @@ const SinglePost = () => {
   const location = useLocation();
   const path = location.pathname.split("/")[2];
   const [post, setPost] = useState({});
-  const PF = "http://localhost:8000/images/";
+  const PF = "https://mkm-blogs.herokuapp.com/images/";
   const { user } = useContext(Context);
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
@@ -16,7 +16,7 @@ const SinglePost = () => {
 
   useEffect(() => {
     const getPost = async () => {
-      const res = await axios.get("/posts/" + path);
+      const res = await axios.get("https://mkm-blogs.herokuapp.com/posts/" + path);
       setPost(res.data);
       setTitle(res.data.title);
       setDesc(res.data.desc);
@@ -26,7 +26,7 @@ const SinglePost = () => {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`/posts/${post._id}`, {
+      await axios.delete(`https://mkm-blogs.herokuapp.com/posts/${post._id}`, {
         data: { username: user.username },
       });
       window.location.replace("/");
@@ -35,7 +35,7 @@ const SinglePost = () => {
 
   const handleUpdate = async () => {
     try {
-      await axios.put(`/posts/${post._id}`, {
+      await axios.put(`https://mkm-blogs.herokuapp.com/posts/${post._id}`, {
         username: user.username,
         title,
         desc,
