@@ -1,5 +1,4 @@
 
-
 #-------------------------------------------------------------------
 #--------------------------Uploading Image-----------------------
 #-------------------------------------------------------------------
@@ -32,7 +31,7 @@
 # Content-Type: application/json
 
 # {
-#     "name":"music"
+#     "name":"movies"
 # } 
 
 
@@ -223,12 +222,12 @@
 #------------------------------Register---------------------------------
 
 
-# POST http://localhost:8000/api/auth/register
-# Content-Type: application/json
+POST http://localhost:8000/api/auth/register
+Content-Type: application/json
 
-# {
-#     "username":"manoj060301",
-#     "email":"manoj060301gmail.com",
-#     "password":"manoj@123"
+{
+    "username":"manoj",
+    "email":"manoj@gmail.com",
+    "password":"manoj@123"
 
-# } 
+} 

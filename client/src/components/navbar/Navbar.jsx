@@ -1,50 +1,72 @@
-import React from 'react'
-import {  NavLink } from 'react-router-dom';
-import './Navbar.css'
-const Navbar = () => {
-    const currentUser = false;
-    return (
-        <nav className='top'>
-            <div className="topLeft">
-                <i className="topLeftIcon fa-brands fa-twitter-square "></i>
-                <i className="topLeftIcon fa-brands fa-instagram-square "></i>
-                <i className="topLeftIcon fa-brands fa-facebook-square "></i>
-            </div>
-            <div className="topCenter">
-                <ul className="topList">
-                    <li className="topListItem">
-                        <NavLink to="/">HOME</NavLink>
-                    </li>
-                    <li className="topListItem">
-                        <NavLink to="/about">ABOUT</NavLink>
-                    </li>
-                    <li className="topListItem">
-                        <NavLink to="/contact">CONTACT</NavLink>
-                    </li>
-                    <li className="topListItem">
-                        <NavLink to="/write">WRITE</NavLink>
-                    </li>
-                    <li className="topListItem">
-                        <NavLink to="/login">{currentUser && 'LOGOUT'}</NavLink>
-                    </li>
-                </ul>
-            </div>
-             <div className="topRight">
-                {currentUser ? <img src="https://picsum.photos/3840" alt="" className='topRightImg' /> :
-                    
-                    <ul className='topList'>
-                        <li className='topListItem'>
-                            <NavLink to="/login">LOGIN</NavLink>
-                        </li>
-                        <li className='topListItem'>
-                            <NavLink to="/register">REGISTER</NavLink>  
-                        </li>
-                    </ul>
-                }
-                    <i className="topSearchIcon fa-solid fa-magnifying-glass "></i>
-            </div>
-        </nav>
-  ) 
-}
+import { useContext } from "react";
+import { NavLink } from "react-router-dom";
+import { Context } from "../../context/Context";
+import "./Navbar.css";
 
-export default Navbar
+const NavBar = () => {
+  const { user, dispatch } = useContext(Context);
+  const PF = "http://localhost:8000/images/"
+
+  const handleLogout = () => {
+    dispatch({ type: "LOGOUT" });
+  };
+  return (
+    <div className="top">
+      <div className="topLeft">
+        <i className="topIcon fab fa-facebook-square"></i>
+        <i className="topIcon fab fa-twitter-square"></i>
+        <i className="topIcon fab fa-pinterest-square"></i>
+        <i className="topIcon fab fa-instagram-square"></i>
+      </div>
+      <div className="topCenter">
+        <ul className="topList">
+          <li className="topListItem">
+            <NavLink  to="/">
+              HOME
+            </NavLink>
+          </li>
+          <li className="topListItem">
+            <NavLink  to="/">
+              ABOUT
+            </NavLink>
+          </li>
+          <li className="topListItem">
+            <NavLink  to="/">
+              CONTACT
+            </NavLink>
+          </li>
+          <li className="topListItem">
+            <NavLink  to="/write">
+              WRITE
+            </NavLink>
+          </li>
+          <li className="topListItem" onClick={handleLogout}>
+            {user && "LOGOUT"}
+          </li>
+        </ul>
+      </div>
+      <div className="topRight">
+        {user ? (
+          <NavLink to="/settings">
+            <img className="topImg" src={PF+user.profilePic} alt="" />
+          </NavLink>
+        ) : (
+          <ul className="topList">
+            <li className="topListItem">
+              <NavLink to="/login">
+                LOGIN
+              </NavLink>
+            </li>
+            <li className="topListItem">
+              <NavLink to="/register">
+                REGISTER
+              </NavLink>
+            </li>
+          </ul>
+        )}
+        <i className="topSearchIcon fas fa-search"></i>
+      </div>
+    </div>
+  );
+}
+export default NavBar

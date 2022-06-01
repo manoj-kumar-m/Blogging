@@ -5,11 +5,14 @@ import SinglePost from '../../components/singlePost/SinglePost'
 import './Single.css'
 const Single = () => {
   return (
-    <div className="single">
+    <>
       <Navbar/>
-      <SinglePost />
-      <Sidebar />
-    </div>
+      <div className="single">
+        <SinglePost/>
+        <Sidebar />
+      </div>
+      
+    </>
   )
 }
 
